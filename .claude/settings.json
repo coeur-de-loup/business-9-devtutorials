@@ -1,1 +1,8 @@
-{}
+{
+  "postToolHooks": [
+    {
+      "pattern": "^bd (close|compact)$",
+      "command": "bd export --json -o .beads/issues.jsonl"
+    }
+  ]
+}
