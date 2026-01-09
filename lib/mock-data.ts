@@ -1,0 +1,297 @@
+// Mock data for development without database
+export const mockTutorials = [
+  {
+    id: 'clm1234567890',
+    title: 'Build a Real-Time Chat App with React & WebSocket',
+    description:
+      'Learn to build a production-ready real-time chat application from scratch. You\'ll implement WebSocket connections, message persistence, user authentication, and a beautiful responsive UI using React and Tailwind CSS.',
+    price: 1900,
+    thumbnail: null,
+    category: 'React',
+    level: 'Intermediate',
+    duration: 270,
+    tags: ['React', 'WebSocket', 'TypeScript', 'Tailwind CSS'],
+    requirements: [
+      'Basic React knowledge (components, hooks, state)',
+      'Understanding of JavaScript ES6+',
+      'Familiarity with npm and command line',
+    ],
+    learningGoals: [
+      'Implement real-time communication with WebSockets',
+      'Build responsive UIs with React and Tailwind CSS',
+      'Handle user authentication and sessions',
+      'Persist messages in a database',
+      'Deploy a real-time app to production',
+    ],
+    curriculum: [
+      {
+        title: 'Project Setup & Architecture',
+        duration: 1800,
+        description: 'Set up the project structure and plan architecture.',
+      },
+      {
+        title: 'Building the Chat Interface',
+        duration: 3600,
+        description: 'Create the chat UI with message list and input.',
+      },
+      {
+        title: 'Implementing WebSocket Connection',
+        duration: 2700,
+        description: 'Add real-time messaging using WebSocket.',
+      },
+      {
+        title: 'User Authentication',
+        duration: 2400,
+        description: 'Implement login/registration with JWT tokens.',
+      },
+      {
+        title: 'Message Persistence',
+        duration: 2100,
+        description: 'Store and retrieve messages from database.',
+      },
+      {
+        title: 'Deployment & Production Setup',
+        duration: 1800,
+        description: 'Deploy the app to Vercel.',
+      },
+    ],
+    publishedAt: new Date('2025-10-15').toISOString(),
+    lastUpdated: new Date('2025-12-01').toISOString(),
+    creator: {
+      id: 'user1',
+      name: 'Sarah Chen',
+      image: 'https://i.pravatar.cc/150?img=1',
+    },
+    _count: {
+      purchases: 127,
+      reviews: 18,
+    },
+    avgRating: 4.7,
+    reviewCount: 18,
+  },
+  {
+    id: 'clm2345678901',
+    title: 'Mastering Next.js 14: Build a Full-Stack E-Commerce App',
+    description:
+      'Deep dive into Next.js 14 App Router, Server Components, and Server Actions. Build a complete e-commerce application with product catalog, shopping cart, checkout, and admin dashboard.',
+    price: 2900,
+    thumbnail: null,
+    category: 'Next.js',
+    level: 'Intermediate',
+    duration: 420,
+    tags: ['Next.js', 'App Router', 'Server Components', 'Prisma', 'Stripe'],
+    requirements: [
+      'Solid React fundamentals',
+      'Basic understanding of full-stack concepts',
+      'Experience with TypeScript',
+    ],
+    learningGoals: [
+      'Master Next.js 14 App Router and Server Components',
+      'Implement Server Actions for mutations',
+      'Build performant database queries with Prisma',
+      'Integrate Stripe for payments',
+      'Create admin dashboard with role-based access',
+    ],
+    curriculum: [
+      { title: 'Introduction to Next.js 14', duration: 1200 },
+      { title: 'Project Setup & Database Schema', duration: 2400 },
+      { title: 'Product Catalog with Server Components', duration: 3600 },
+      { title: 'Shopping Cart with Server Actions', duration: 3000 },
+      { title: 'Stripe Integration', duration: 2700 },
+      { title: 'Admin Dashboard', duration: 3600 },
+      { title: 'Performance & Deployment', duration: 2100 },
+    ],
+    publishedAt: new Date('2025-11-01').toISOString(),
+    lastUpdated: new Date('2025-12-10').toISOString(),
+    creator: {
+      id: 'user2',
+      name: 'Marcus Rodriguez',
+      image: 'https://i.pravatar.cc/150?img=2',
+    },
+    _count: {
+      purchases: 234,
+      reviews: 32,
+    },
+    avgRating: 4.9,
+    reviewCount: 32,
+  },
+  {
+    id: 'clm3456789012',
+    title: 'TypeScript Best Practices: Build Scalable React Apps',
+    description:
+      'Learn advanced TypeScript patterns and best practices for building type-safe, scalable React applications. Covers generics, utility types, custom hooks, and error handling patterns.',
+    price: 1900,
+    thumbnail: null,
+    category: 'TypeScript',
+    level: 'Intermediate',
+    duration: 300,
+    tags: ['TypeScript', 'React', 'Generics', 'Type Safety'],
+    requirements: [
+      'Intermediate React knowledge',
+      'Basic TypeScript experience',
+      'Understanding of JavaScript types',
+    ],
+    learningGoals: [
+      'Master TypeScript generics and utility types',
+      'Build type-safe React components and hooks',
+      'Implement proper error handling patterns',
+      'Create reusable type-safe utilities',
+      'Write maintainable typed codebases',
+    ],
+    curriculum: [
+      { title: 'Advanced TypeScript Types', duration: 2700 },
+      { title: 'Type-Safe React Patterns', duration: 3000 },
+      { title: 'API Layer Type Safety', duration: 2400 },
+      { title: 'Error Handling Patterns', duration: 2100 },
+      { title: 'Testing Type-Safe Code', duration: 2700 },
+    ],
+    publishedAt: new Date('2025-09-20').toISOString(),
+    lastUpdated: new Date('2025-11-15').toISOString(),
+    creator: {
+      id: 'user3',
+      name: 'Alex Kim',
+      image: 'https://i.pravatar.cc/150?img=3',
+    },
+    _count: {
+      purchases: 89,
+      reviews: 12,
+    },
+    avgRating: 4.5,
+    reviewCount: 12,
+  },
+  {
+    id: 'clm4567890123',
+    title: 'Node.js Microservices: Build a Scalable API Architecture',
+    description:
+      'Learn to design and implement microservices architecture using Node.js. Build distributed systems with service communication, data management, and deployment strategies.',
+    price: 2900,
+    thumbnail: null,
+    category: 'Node.js',
+    level: 'Advanced',
+    duration: 480,
+    tags: ['Node.js', 'Microservices', 'Docker', 'Redis', 'API Gateway'],
+    requirements: [
+      'Advanced Node.js knowledge',
+      'Understanding of REST APIs',
+      'Basic Docker experience',
+      'Database fundamentals',
+    ],
+    learningGoals: [
+      'Design microservices architecture',
+      'Implement service-to-service communication',
+      'Handle data consistency across services',
+      'Deploy microservices with Docker',
+      'Implement API gateway patterns',
+    ],
+    curriculum: [
+      { title: 'Introduction to Microservices', duration: 1800 },
+      { title: 'Designing the Architecture', duration: 2400 },
+      { title: 'Building the User Service', duration: 3600 },
+      { title: 'Building the Order Service', duration: 3600 },
+      { title: 'Service Communication', duration: 3000 },
+      { title: 'Data Management', duration: 2700 },
+      { title: 'API Gateway', duration: 2400 },
+      { title: 'Deployment with Docker', duration: 2700 },
+    ],
+    publishedAt: new Date('2025-08-10').toISOString(),
+    lastUpdated: new Date('2025-11-01').toISOString(),
+    creator: {
+      id: 'user1',
+      name: 'Sarah Chen',
+      image: 'https://i.pravatar.cc/150?img=1',
+    },
+    _count: {
+      purchases: 56,
+      reviews: 8,
+    },
+    avgRating: 4.8,
+    reviewCount: 8,
+  },
+  {
+    id: 'clm5678901234',
+    title: 'Building APIs with Prisma and PostgreSQL',
+    description:
+      'Master database design and API development with Prisma ORM and PostgreSQL. Learn to design schemas, write efficient queries, implement relationships, and build performant REST APIs.',
+    price: 900,
+    thumbnail: null,
+    category: 'Database',
+    level: 'Intermediate',
+    duration: 180,
+    tags: ['Prisma', 'PostgreSQL', 'Database Design', 'API'],
+    requirements: [
+      'Basic SQL knowledge',
+      'Node.js fundamentals',
+      'Understanding of REST APIs',
+    ],
+    learningGoals: [
+      'Design efficient database schemas',
+      'Write complex queries with Prisma',
+      'Implement one-to-many and many-to-many relationships',
+      'Build performant REST APIs',
+      'Handle database migrations',
+    ],
+    curriculum: [
+      { title: 'Introduction to Prisma', duration: 1200 },
+      { title: 'Schema Design', duration: 1800 },
+      { title: 'Querying Data', duration: 1800 },
+      { title: 'Building the API', duration: 2400 },
+      { title: 'Migrations & Deployment', duration: 1200 },
+    ],
+    publishedAt: new Date('2025-12-01').toISOString(),
+    lastUpdated: new Date('2025-12-20').toISOString(),
+    creator: {
+      id: 'user2',
+      name: 'Marcus Rodriguez',
+      image: 'https://i.pravatar.cc/150?img=2',
+    },
+    _count: {
+      purchases: 45,
+      reviews: 6,
+    },
+    avgRating: 4.6,
+    reviewCount: 6,
+  },
+];
+
+export const mockCategories = [
+  { name: 'React', count: 1 },
+  { name: 'Next.js', count: 1 },
+  { name: 'TypeScript', count: 1 },
+  { name: 'Node.js', count: 1 },
+  { name: 'Database', count: 1 },
+];
+
+export const mockReviews = [
+  {
+    id: 'review1',
+    rating: 5,
+    comment:
+      'Excellent tutorial! The WebSocket implementation was explained clearly and the code is production-ready.',
+    createdAt: new Date('2025-12-01').toISOString(),
+    user: {
+      name: 'Admin User',
+      image: 'https://i.pravatar.cc/150?img=5',
+    },
+  },
+  {
+    id: 'review2',
+    rating: 5,
+    comment: 'Best Next.js 14 course I\'ve taken. Server Actions finally make sense!',
+    createdAt: new Date('2025-12-05').toISOString(),
+    user: {
+      name: 'Admin User',
+      image: 'https://i.pravatar.cc/150?img=5',
+    },
+  },
+  {
+    id: 'review3',
+    rating: 4,
+    comment:
+      'Great coverage of advanced TypeScript patterns. More examples on utility types would be helpful.',
+    createdAt: new Date('2025-12-10').toISOString(),
+    user: {
+      name: 'Admin User',
+      image: 'https://i.pravatar.cc/150?img=5',
+    },
+  },
+];
