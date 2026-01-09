@@ -29,6 +29,7 @@ model User {
   role              Role      @default(STUDENT)
   password          String?   // For credentials auth
   emailVerified     DateTime?
+  stripeAccountId   String?   @unique // Stripe Connect account ID for creators
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
 
@@ -42,6 +43,7 @@ model User {
   sessions          Session[]
 
   @@index([email])
+  @@index([stripeAccountId])
 }
 
 model Account {

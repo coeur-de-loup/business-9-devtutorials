@@ -32,6 +32,26 @@ export async function auth(): Promise<Session | null> {
 }
 
 /**
+ * getServerSession stub for NextAuth compatibility
+ *
+ * TODO: Replace with actual next-auth/next implementation
+ */
+export async function getServerSession(): Promise<Session | null> {
+  return await auth();
+}
+
+/**
+ * AuthOptions stub for NextAuth configuration
+ *
+ * TODO: Replace with actual NextAuth configuration
+ */
+export const authOptions = {
+  // NextAuth configuration goes here
+  providers: [],
+  callbacks: {},
+};
+
+/**
  * Middleware stub for route protection
  */
 export async function requireAuth(
