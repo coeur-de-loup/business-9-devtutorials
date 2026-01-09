@@ -216,3 +216,14 @@ model UserProgress {
   @@index([userId])
   @@index([tutorialId])
 }
+
+model Waitlist {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  source    String?  // Where they signed up from (e.g., "landing-page", "twitter", "reddit")
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([createdAt])
+}

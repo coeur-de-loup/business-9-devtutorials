@@ -170,7 +170,7 @@ export default async function MyTutorialsPage() {
                         // @ts-ignore - Prisma String? type is safe here with null check
                         <img
                           src={tutorial.creator.image}
-                          alt={tutorial.creator.name}
+                          alt={tutorial.creator.name || 'Creator'}
                           className="h-6 w-6 rounded-full mr-2"
                         />
                       ) : null}

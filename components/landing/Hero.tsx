@@ -1,3 +1,5 @@
+import EmailCapture from '@/components/landing/EmailCapture';
+
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
@@ -20,14 +22,20 @@ export default function Hero() {
               </p>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-lg">
-                Get Waitlist Access
-              </button>
-              <button className="px-8 py-4 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-semibold rounded-lg border-2 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-200 text-lg">
+            {/* Email Capture Form */}
+            <EmailCapture source="hero-landing-page" className="max-w-lg" />
+
+            {/* Secondary CTA */}
+            <div>
+              <a
+                href="#creators"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
                 Become a Creator - Earn 70%
-              </button>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
 
             {/* Social Proof */}
