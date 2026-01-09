@@ -1,0 +1,218 @@
+// This is your Prisma schema file
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  CREATOR
+  ADMIN
+}
+
+enum TutorialStatus {
+  DRAFT
+  PENDING_REVIEW
+  PUBLISHED
+  REJECTED
+}
+
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  name              String?
+  image             String?
+  role              Role      @default(STUDENT)
+  password          String?   // For credentials auth
+  emailVerified     DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  // Relations
+  tutorials         Tutorial[]
+  purchases         Purchase[]
+  reviews           Review[]
+  creatorEarnings   CreatorEarning[]
+  progress          UserProgress[]
+  accounts          Account[]
+  sessions          Session[]
+
+  @@index([email])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Tutorial {
+  id                String          @id @default(cuid())
+  title             String
+  description       String          @db.Text
+  price             Int             // Price in cents (e.g., $19.00 = 1900)
+  creatorId         String
+  creator           User            @relation(fields: [creatorId], references: [id])
+  status            TutorialStatus  @default(DRAFT)
+
+  // Metadata
+  thumbnail         String?
+  category          String?
+  tags              String[]
+  level             String?         // Beginner, Intermediate, Advanced
+  language          String          @default("en")
+  duration          Int?            // Total duration in minutes
+
+  // Curriculum
+  curriculum        Json?           // JSON array of lessons
+  requirements      String[]        // Prerequisites
+  learningGoals     String[]        // What students will learn
+
+  // Content URLs
+  codeRepositoryUrl String?         // R2/S3 URL for code files
+
+  // Admin review
+  adminNotes        String?         @db.Text
+  reviewedAt        DateTime?
+  reviewedBy        String?
+
+  // Freshness guarantee
+  publishedAt       DateTime?
+  lastUpdated       DateTime        @default(now())
+  freshnessExpires  DateTime?       // 6 months from publishedAt
+
+  // Stripe Connect
+  stripeAccountId   String?         // Creator's Stripe account ID
+
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  // Relations
+  purchases         Purchase[]
+  reviews           Review[]
+  earnings          CreatorEarning[]
+  videoAssets       VideoAsset[]
+  progress          UserProgress[]
+
+  @@index([creatorId])
+  @@index([status])
+  @@index([publishedAt])
+  @@index([category])
+}
+
+model VideoAsset {
+  id          String   @id @default(cuid())
+  tutorialId  String
+  tutorial    Tutorial @relation(fields: [tutorialId], references: [id], onDelete: Cascade)
+  lessonIndex Int      // Order in curriculum
+  title       String
+  duration    Int      // Duration in seconds
+  videoUrl    String   // R2/Bunny.net URL
+  size        Int      // File size in bytes
+  createdAt   DateTime @default(now())
+
+  @@unique([tutorialId, lessonIndex])
+  @@index([tutorialId])
+}
+
+model Purchase {
+  id              String   @id @default(cuid())
+  userId          String
+  tutorialId      String
+  amount          Int      // Purchase amount in cents
+  stripeSessionId String   @unique
+  createdAt       DateTime @default(now())
+
+  user            User     @relation(fields: [userId], references: [id])
+  tutorial        Tutorial @relation(fields: [tutorialId], references: [id])
+
+  @@unique([userId, tutorialId])
+  @@index([userId])
+  @@index([tutorialId])
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  userId      String
+  tutorialId  String
+  rating      Int      // 1-5 stars
+  comment     String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tutorial    Tutorial @relation(fields: [tutorialId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, tutorialId])
+  @@index([tutorialId])
+  @@index([rating])
+}
+
+model CreatorEarning {
+  id          String   @id @default(cuid())
+  creatorId   String
+  tutorialId  String
+  purchaseId  String   @unique
+  amount      Int      // Creator's share in cents
+  paidOut     Boolean  @default(false)
+  paidAt      DateTime?
+  createdAt   DateTime @default(now())
+
+  creator     User     @relation(fields: [creatorId], references: [id])
+  tutorial    Tutorial @relation(fields: [tutorialId], references: [id])
+
+  @@index([creatorId, paidOut])
+}
+
+model UserProgress {
+  id            String   @id @default(cuid())
+  userId        String
+  tutorialId    String
+  lessonIndex   Int
+  completed     Boolean  @default(false)
+  watchTime     Int      @default(0) // Seconds watched
+  lastWatchedAt DateTime @default(now())
+
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tutorial      Tutorial @relation(fields: [tutorialId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, tutorialId, lessonIndex])
+  @@index([userId])
+  @@index([tutorialId])
+}
