@@ -63,7 +63,27 @@ npm start
 2. **Stripe** - https://stripe.com (test mode, free)
 3. **Resend** - https://resend.com (free tier)
 
-### Deploy (20 minutes)
+### Quick Deploy (30 minutes - Recommended)
+
+**Use the automated setup script:**
+
+```bash
+# 1. Create free-tier accounts (15 min)
+#    - Neon: https://neon.tech (database)
+#    - Resend: https://resend.com (email)
+#    - Stripe: https://stripe.com (payments, test mode)
+
+# 2. Run automated setup script (15 min)
+./scripts/setup-production-env.sh
+```
+
+The script will:
+- Configure all Vercel environment variables
+- Deploy to production
+- Run database migrations
+- Provide testing instructions
+
+### Manual Deploy (20 minutes)
 
 ```bash
 # 1. Install Vercel CLI
@@ -75,7 +95,7 @@ vercel login
 # 3. Link project
 vercel link
 
-# 4. Add environment variables
+# 4. Add environment variables (see PRODUCTION_SETUP.md for values)
 vercel env add DATABASE_URL production
 vercel env add NEXTAUTH_SECRET production
 vercel env add NEXTAUTH_URL production
@@ -92,10 +112,9 @@ DATABASE_URL="your-production-db-url" npx prisma db push
 
 ### Post-Deployment
 
-- Configure Stripe webhooks (see docs/deployment/DEPLOYMENT_QUICKSTART.md)
-- Test checkout flow
-- Test email delivery
-- Verify all functionality
+- See `docs/deployment/PRODUCTION_SETUP.md` for detailed setup guide
+- Use `docs/deployment/DEPLOYMENT_VERIFICATION.md` checklist to verify
+- Check `docs/deployment/DEPLOYMENT_STATUS.md` for current status
 
 ## 📚 Documentation
 
